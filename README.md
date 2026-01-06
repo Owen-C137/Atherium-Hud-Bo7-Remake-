@@ -69,7 +69,7 @@ include,aetherium_hud
 
 ---
 
-## Signitures
+## Signatures
 
 You can disable the signitures that show in the bottom right corner by opening the file:
 ui\uieditor\menus\StartMenu\AetheriumStartMenu.lua
