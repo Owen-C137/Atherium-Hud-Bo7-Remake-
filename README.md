@@ -1,6 +1,4 @@
-# Aetherium HUD - BO6 Style Remake for BO3
-
-A modern, feature-rich HUD system for Black Ops 3 Zombies, inspired by Black Ops 6 design.
+# Aetherium HUD - BO7 Remake for BO3
 
 > This is not a complete 1:1 recreation. This HUD was created with the available tools and assets in BO3 modding.
 
