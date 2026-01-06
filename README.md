@@ -72,7 +72,7 @@ Done! Recompile and relink your map to see the HUD in action.
 
 ## Signatures
 
-You can disable the signitures that show in the bottom right corner by opening the file:
+You can disable the Signatures that show in the bottom right corner by opening the file:
 ui\uieditor\menus\StartMenu\AetheriumStartMenu.lua
 
 Change: local ShowSignatures = true 
