@@ -204,7 +204,7 @@ CoD.AetheriumPartyPlayers.new = function ( menu, controller, playerIndex )
 	self:addElement( self.portrait )
 
 	-- Player Name (offset from BG top)
-	local nameTop = bgTop + 23
+	local nameTop = bgTop + 34
 	local nameBottom = nameTop + 9
 	self.name = LUI.UIText.new()
 	self.name:setLeftRight(true, false, 107, 199)

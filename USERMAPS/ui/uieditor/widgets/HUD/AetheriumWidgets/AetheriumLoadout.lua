@@ -331,7 +331,7 @@ CoD.AetheriumLoadout.new = function ( menu, controller )
 	self:addElement(self.ammo_mod_icon)
 	
 	-- Subscribe to AAT changes (Ammo Mod system)
-	-- Use currentWeapon.aatIcon model (BO6 Overhaul pattern - no CSC needed!)
+	-- Use currentWeapon.aatIcon model (no CSC needed!)
 	self.ammo_mod_icon:subscribeToModel(Engine.GetModel(Engine.GetModelForController(controller), "currentWeapon.aatIcon"), function(model)
 		local aatIcon = Engine.GetModelValue(model)
 		

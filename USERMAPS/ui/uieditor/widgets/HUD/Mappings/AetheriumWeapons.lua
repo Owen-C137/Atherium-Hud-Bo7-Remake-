@@ -1,7 +1,7 @@
 -- Shared weapon data table (icon + description)
 -- This is used by both loadout display and cursor hints
 CoD.AetheriumWeaponData = {
-	-- Assault Rifles
+	-- Custom Assault Rifles
 	["sat_ar_hawk"] = {
 		ingame_name = "M15 MOD 0",
 		icon = "i_mtl_sat_icon_weapon_sat_ar_hawk_ao",
@@ -75,7 +75,8 @@ CoD.AetheriumWeaponData = {
 		icon = "t7_icon_weapon_hero_mercenary_pu",
 		description = "WHAT GOES UP... MUST COME DOWN!"
 	},
-	-- Default
+	-- Default Bo3 Mappings
+	-- Default NO IMAGE / NO DESC entry
 	["default"] = {
 		icon = "",
 		description = ""

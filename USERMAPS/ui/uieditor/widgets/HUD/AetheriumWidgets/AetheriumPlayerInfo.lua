@@ -74,7 +74,7 @@ CoD.AetheriumPlayerInfo.new = function ( menu, controller )
 	-- Player Name (elem28) - TEXT (reactive to playerName)
 	self.player_name = LUI.UIText.new()
 	self.player_name:setLeftRight(true, false, 98, 199)
-	self.player_name:setTopBottom(true, false, 629, 640)
+	self.player_name:setTopBottom(true, false, 636, 647)
 	self.player_name:setTTF( "fonts/ltromatic.ttf" )
 	self.player_name:setAlignment( Enum.LUIAlignment.LUI_ALIGNMENT_LEFT )
 	self.player_name:setRGB( 1.000, 1.000, 1.000 )
@@ -86,6 +86,20 @@ CoD.AetheriumPlayerInfo.new = function ( menu, controller )
 	end )
 	self.player_name:setAlpha( 1.0 )
 	self:addElement( self.player_name )
+
+	-- Shield Health Bar (Blue bar above normal health bar)
+	self.shield_health_fill = LUI.UIImage.new()
+	self.shield_health_fill:setLeftRight(true, false, 94, 221)
+	self.shield_health_fill:setTopBottom(true, false, 641, 648)
+	self.shield_health_fill:setImage( RegisterImage( "i_mtl_ui_hud_party_health_bar_fill" ) )
+	self.shield_health_fill:setRGB( 0.4, 0.7, 1 )  -- Blue color for shield
+	self.shield_health_fill:setMaterial( LUI.UIImage.GetCachedMaterial( "uie_wipe_normal" ) )
+	self.shield_health_fill:setShaderVector( 0, 0, 0, 0, 0 )  -- Start at 0 (hidden)
+	self.shield_health_fill:setShaderVector( 1, 0, 0, 0, 0 )
+	self.shield_health_fill:setShaderVector( 2, 1, 0, 0, 0 )
+	self.shield_health_fill:setShaderVector( 3, 0, 0, 0, 0 )
+	self.shield_health_fill:setAlpha( 0 )  -- Hidden by default (no shield)
+	self:addElement( self.shield_health_fill )
 
 	-- Health Fill (added BEFORE border so border renders on top)
 	self.health_fill = LUI.UIImage.new()
@@ -158,6 +172,15 @@ CoD.AetheriumPlayerInfo.new = function ( menu, controller )
 		end
 	end )
 	self:addElement( self.player_portrait )
+	
+	-- Shield Icon (shows when shield is equipped)
+	self.shield_icon = LUI.UIImage.new()
+	self.shield_icon:setLeftRight(true, false, 230, 253)
+	self.shield_icon:setTopBottom(true, false, 635, 658)
+	self.shield_icon:setImage(RegisterImage("riotshield_zm_icon"))
+	self.shield_icon:setRGB(1, 1, 1)
+	self.shield_icon:setAlpha(0)  -- Hidden by default
+	self:addElement(self.shield_icon)
 	
 	-- BO6 PATTERN: Dynamic health subscription based on clientNum
 	-- This ensures each player viewing the HUD sees THEIR OWN health
@@ -276,6 +299,65 @@ CoD.AetheriumPlayerInfo.new = function ( menu, controller )
 							CoD.GetVectorComponentFromString( health, 3 ),
 							CoD.GetVectorComponentFromString( health, 4 ) )
 					end
+				end
+			end )
+			
+			-- Subscribe to shield health (riot shield)
+			local shieldHealthModel = Engine.GetModel( controllerModel, "zmInventory.shield_health" )
+			
+			-- Remove old shield subscription if it exists
+			if self.shieldSubscription ~= nil then
+				self:removeSubscription( self.shieldSubscription )
+			end
+			
+			-- Subscribe to shield health model
+			self.shieldSubscription = self:subscribeToModel( shieldHealthModel, function ( model )
+				local shieldHealth = Engine.GetModelValue( model )
+				if shieldHealth then
+					-- Check if shield is actually equipped (showDpadDown > 0 means shield is held)
+					local showDpadDown = Engine.GetModelValue( Engine.GetModel( controllerModel, "hudItems.showDpadDown" ) )
+					
+					-- Shield health is 0-1 range (0 = no shield, 1 = full shield)
+					-- Only show if shield is equipped AND has health
+					if showDpadDown ~= nil and showDpadDown > 0 and shieldHealth > 0 then
+					-- Has shield equipped - show shield bar and icon
+					self.shield_health_fill:setAlpha( 1 )
+					self.shield_icon:setAlpha( 1 )
+				
+				-- Move player name UP to sit above shield bar (smooth animation)
+				self.player_name:beginAnimation( "keyframe", 200, false, false, CoD.TweenType.Linear )
+					self.player_name:setTopBottom(true, false, 630, 641)
+				self.player_hp:beginAnimation( "keyframe", 200, false, false, CoD.TweenType.Linear )
+				self.player_hp:setTopBottom(true, false, 632, 639)
+				
+				-- Update shield bar fill immediately (no animation - shows every damage hit)
+				self.shield_health_fill:setShaderVector( 0,
+						CoD.GetVectorComponentFromString( shieldHealth, 1 ),
+						CoD.GetVectorComponentFromString( shieldHealth, 2 ),
+						CoD.GetVectorComponentFromString( shieldHealth, 3 ),
+						CoD.GetVectorComponentFromString( shieldHealth, 4 ) )
+					
+					-- Color based on shield health (blue at full, red when low)
+					if shieldHealth <= 0.33 then
+						self.shield_health_fill:setRGB( 1, 0.4, 0.4 )  -- Red when low
+					elseif shieldHealth <= 0.66 then
+						self.shield_health_fill:setRGB( 1, 0.8, 0.4 )  -- Orange/Yellow when medium
+					else
+						self.shield_health_fill:setRGB( 0.4, 0.7, 1 )  -- Blue when high
+					end
+				else
+					-- No shield equipped or no health - hide shield bar and icon
+					self.shield_health_fill:setAlpha( 0 )
+					self.shield_icon:setAlpha( 0 )
+				
+				-- Move player name back DOWN to original position
+				self.player_name:beginAnimation( "keyframe", 200, false, false, CoD.TweenType.Linear )
+				self.player_name:setTopBottom(true, false, 636, 647)
+				
+				-- Move HP text back DOWN to original position
+				self.player_hp:beginAnimation( "keyframe", 200, false, false, CoD.TweenType.Linear )
+				self.player_hp:setTopBottom(true, false, 640, 647)
+			end
 				end
 			end )
 		end

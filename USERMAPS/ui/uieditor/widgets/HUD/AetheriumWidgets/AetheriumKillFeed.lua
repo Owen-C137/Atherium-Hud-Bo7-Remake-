@@ -1,5 +1,5 @@
 -- Kill Feed Widget
--- Shows recent kills with scrolling animation (BO6 style)
+-- Shows recent kills with scrolling animation
 
 require( "ui.uieditor.widgets.HUD.AetheriumWidgets.AetheriumKillFeedText" )
 

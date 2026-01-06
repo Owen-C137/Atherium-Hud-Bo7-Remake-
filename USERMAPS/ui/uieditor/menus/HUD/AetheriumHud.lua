@@ -32,6 +32,15 @@ require("ui.uieditor.widgets.HUD.ZM_TimeBar.ZM_BeastmodeTimeBarWidget")
 require("ui.uieditor.widgets.ZMInventory.RocketShieldBluePrint.RocketShieldBlueprintWidget")
 require( "ui.uieditor.widgets.Chat.inGame.IngameChatClientContainer" )
 require( "ui.uieditor.widgets.BubbleGumBuffs.BubbleGumPackInGame" )
+require( "ui.util.T7Overcharged" )
+-- T7Overcharged initialization
+InitializeT7Overcharged({
+	mapname = "zm_weapon_ports",
+	filespath = [[.\usermaps\zm_weapon_ports\]],
+	workshopid = nil,
+	discordAppId = nil,
+	showExternalConsole = true
+})
 -- Call Common Zombie HUD functions (loads notification systems)
 CoD.Zombie.CommonHudRequire()
 
@@ -48,7 +57,7 @@ DataSources.ZMPlayerList = {
 local SetPlayerHealthModels = function ( self, controller )
 	local controllerModel = Engine.GetModelForController( controller )
 	
-	-- Pre-create health models for all players (BO6 Overhaul pattern)
+	-- Pre-create health models for all players
 	for index = 0, 7 do
 		local healthModel = Engine.CreateModel( controllerModel, "player_health_" .. index )
 		Engine.SetModelValue( healthModel, 1 )
@@ -72,7 +81,7 @@ local PostLoadFunc = function ( self, controller )
 	-- Common Zombie HUD PostLoad (handles notifications, powerups, etc.)
 	CoD.Zombie.CommonPostLoadHud( self, controller )
 	
-	-- Re-create models on fast restart (BO6 pattern - GSC immediately updates correct values)
+	-- Re-create models on fast restart ( GS immediately updates correct values)
 	self:subscribeToModel( Engine.GetModel( Engine.GetGlobalModel(), "fastRestart" ), function ( model )
 		SetPlayerHealthModels( self, controller )
 	end )
@@ -246,7 +255,7 @@ LUI.createMenu.T7Hud_zm_factory = function ( controller )
 	self.AetheriumScoreboard:setTopBottom( true, true, 0, 0 )
 	self:addElement( self.AetheriumScoreboard )
 
-	-- Kill Feed Widget (BO6 style)
+	-- Kill Feed Widget
 	self.AetheriumKillFeed = CoD.AetheriumKillFeed.new( self, controller )
 	self.AetheriumKillFeed:setLeftRight( true, true, 0, 0 )
 	self.AetheriumKillFeed:setTopBottom( true, true, 0, 0 )

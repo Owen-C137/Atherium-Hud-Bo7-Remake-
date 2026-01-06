@@ -679,7 +679,7 @@ LUI.createMenu.StartMenu_Main = function(controller)
 		self:addElement(self.MadgazSignature)
 	end
 
-	-- Button Callbacks (BO6 Overhaul Pattern)
+	-- Button Callbacks
 	self:AddButtonCallbackFunction(self, controller, Enum.LUIButton.LUI_KEY_XBB_PSCIRCLE, nil, function(element, menu, controller, model)
 		RefreshLobbyRoom(menu, controller)
 		StartMenuGoBack(menu, controller)
