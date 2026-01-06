@@ -1,6 +1,6 @@
 # Aetherium HUD - BO7 Remake for BO3
 
-> This is not a complete 1:1 recreation. This HUD was created with the available tools and assets in BO3 modding.
+> This is not a complete 1:1 recreation. 
 
 ---
 
