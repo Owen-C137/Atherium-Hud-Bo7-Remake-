@@ -4,7 +4,6 @@ rawfile,ui/uieditor/widgets/HUD/ZM_CursorHint/ZMCursorHintNew.lua
 
 // PAUSE MENU
 rawfile,ui/uieditor/menus/StartMenu/AetheriumStartMenu.lua
-rawfile,ui/uieditor/menus/StartMenu/AetheriumOptionsMenu.lua
 rawfile,ui/uieditor/widgets/StartMenu/AetheriumMenuButton.lua
 rawfile,ui/uieditor/widgets/StartMenu/AetheriumSmallButton.lua
 
@@ -16,6 +15,10 @@ rawfile,ui/uieditor/widgets/HUD/ZM_CursorHint/Prompts/PromptPerks.lua
 rawfile,ui/uieditor/widgets/HUD/ZM_CursorHint/Prompts/PromptPAP.lua
 rawfile,ui/uieditor/widgets/HUD/ZM_CursorHint/Prompts/PromptMysteryBox.lua
 rawfile,ui/uieditor/widgets/HUD/ZM_CursorHint/Prompts/PromptBBG.lua
+
+// T7OVERCHARGED FILES
+rawfile,ui/util/T7Overcharged.lua
+rawfile,ui/util/T7OverchargedUtil.lua
 
 // AETHERIUM WIDGETS
 rawfile,ui/uieditor/widgets/HUD/AetheriumWidgets/AetheriumLoadout.lua
@@ -90,6 +93,7 @@ image,i_mtl_ximage_c800fc9cce96f23
 image,i_mtl_ximage_e0683b14f47e4fc
 image,i_vfx_dist_blast_wave_loop_1_c
 image,i_mtl_image_4b496d8bd0369913
+image,riotshield_zm_icon
 
 image,i_mtl_hud_reticle_06_h
 
@@ -169,6 +173,9 @@ image,i_mtl_ui_cursor_arrow_active
 image,i_mtl_sat_quest_widget
 image,i_mtl_image_7d9423641070f37e
 image,i_mtl_sat_ui_icon_rank_prestige_04
+
+
+
 
 // BASE IMAGES
 image,$blacktransparent
