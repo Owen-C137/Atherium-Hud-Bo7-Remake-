@@ -66,11 +66,6 @@ include,aetherium_hud
 
 ### Step 5: Compile Your Map
 
-1. Open **Launcher** (Mod Tools)
-2. Select your map from the dropdown
-3. Click **"Compile"** and wait for it to finish
-4. Click **"Link"** after compilation completes
-5. Launch your map and enjoy the new HUD!
 
 ---
 
