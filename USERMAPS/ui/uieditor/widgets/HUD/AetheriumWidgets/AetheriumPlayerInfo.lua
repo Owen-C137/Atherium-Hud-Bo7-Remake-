@@ -131,15 +131,6 @@ CoD.AetheriumPlayerInfo.new = function ( menu, controller )
 	self.downedIcon:setAlpha(0)  -- Hidden by default
 	self:addElement(self.downedIcon)
 
-	-- Dead State Overlay (Red X over portrait)
-	self.deadOverlay = LUI.UIImage.new()
-	self.deadOverlay:setLeftRight(true, false, 42, 91)
-	self.deadOverlay:setTopBottom(true, false, 628, 686)
-	self.deadOverlay:setImage(RegisterImage("i_mtl_image_4b496d8bd0369913"))
-	self.deadOverlay:setRGB(1, 0.2, 0.2)  -- Red
-	self.deadOverlay:setAlpha(0)  -- Hidden by default
-	self:addElement(self.deadOverlay)
-
 	-- Player HP (elem29) - TEXT (reactive to player_health_X)
 	self.player_hp = LUI.UIText.new()
 	self.player_hp:setLeftRight(true, false, 190, 241)
@@ -172,6 +163,16 @@ CoD.AetheriumPlayerInfo.new = function ( menu, controller )
 		end
 	end )
 	self:addElement( self.player_portrait )
+
+
+	-- Dead State Overlay (Red X over portrait)
+	self.deadOverlay = LUI.UIImage.new()
+	self.deadOverlay:setLeftRight(true, false, 42, 91)
+	self.deadOverlay:setTopBottom(true, false, 628, 686)
+	self.deadOverlay:setImage(RegisterImage("i_mtl_image_4b496d8bd0369913"))
+	self.deadOverlay:setRGB(1, 0.2, 0.2)  -- Red
+	self.deadOverlay:setAlpha(0)  -- Hidden by default
+	self:addElement(self.deadOverlay)
 	
 	-- Shield Icon (shows when shield is equipped)
 	self.shield_icon = LUI.UIImage.new()
@@ -328,8 +329,11 @@ CoD.AetheriumPlayerInfo.new = function ( menu, controller )
 				self.player_name:beginAnimation( "keyframe", 200, false, false, CoD.TweenType.Linear )
 					self.player_name:setTopBottom(true, false, 630, 641)
 				self.player_hp:beginAnimation( "keyframe", 200, false, false, CoD.TweenType.Linear )
-				self.player_hp:setTopBottom(true, false, 632, 639)
-				
+				self.player_hp:setTopBottom(true, false, 632, 639)				
+				-- Move downed icon to RIGHT of shield icon to prevent overlap (smooth animation)
+				self.downedIcon:beginAnimation( "keyframe", 200, false, false, CoD.TweenType.Linear )
+				self.downedIcon:setLeftRight(true, false, 257, 292)		
+				self.downedIcon:setTopBottom(true, false, 628, 663)		
 				-- Update shield bar fill immediately (no animation - shows every damage hit)
 				self.shield_health_fill:setShaderVector( 0,
 						CoD.GetVectorComponentFromString( shieldHealth, 1 ),
@@ -357,6 +361,10 @@ CoD.AetheriumPlayerInfo.new = function ( menu, controller )
 				-- Move HP text back DOWN to original position
 				self.player_hp:beginAnimation( "keyframe", 200, false, false, CoD.TweenType.Linear )
 				self.player_hp:setTopBottom(true, false, 640, 647)
+				
+				-- Move downed icon back to original position (smooth animation)
+				self.downedIcon:beginAnimation( "keyframe", 200, false, false, CoD.TweenType.Linear )
+				self.downedIcon:setLeftRight(true, false, 223, 253)
 			end
 				end
 			end )
