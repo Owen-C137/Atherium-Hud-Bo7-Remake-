@@ -44,6 +44,9 @@ rawfile,ui/uieditor/widgets/HUD/Mappings/AtheriumPerks.lua
 
 material,sat_hud_horizontal_compass
 
+// Custom Kill Feed Strings
+localize,zm_aetherium
+
 // AETHERIUM HUD IMAGES
 image,i_mtl_ui_hud_compass_theme_aetherium
 image,i_mtl_ui_hud_health_theme_aetherium
@@ -166,9 +169,6 @@ image,i_mtl_ui_cursor_arrow_active
 image,i_mtl_sat_quest_widget
 image,i_mtl_image_7d9423641070f37e
 image,i_mtl_sat_ui_icon_rank_prestige_04
-
-
-
 
 // BASE IMAGES
 image,$blacktransparent
