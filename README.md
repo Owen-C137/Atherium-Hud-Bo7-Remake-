@@ -66,6 +66,7 @@ include,aetherium_hud
 
 ### Step 5: Compile Your Map
 
+Done! Recompile and relink your map to see the HUD in action.
 
 ---
 
