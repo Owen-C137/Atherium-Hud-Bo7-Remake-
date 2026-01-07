@@ -14,6 +14,7 @@ rawfile,ui/uieditor/widgets/HUD/ZM_CursorHint/Prompts/PromptPowerRequired.lua
 rawfile,ui/uieditor/widgets/HUD/ZM_CursorHint/Prompts/PromptPerks.lua
 rawfile,ui/uieditor/widgets/HUD/ZM_CursorHint/Prompts/PromptPAP.lua
 rawfile,ui/uieditor/widgets/HUD/ZM_CursorHint/Prompts/PromptMysteryBox.lua
+rawfile,ui/uieditor/widgets/HUD/ZM_CursorHint/Prompts/PromptWallBuy.lua
 rawfile,ui/uieditor/widgets/HUD/ZM_CursorHint/Prompts/PromptBBG.lua
 
 // T7OVERCHARGED FILES
