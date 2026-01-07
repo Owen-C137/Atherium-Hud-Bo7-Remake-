@@ -31,6 +31,7 @@
 #precache( "string", "ZM_AETHERIUM_KF_FIRE_WORKS" );
 #precache( "string", "ZM_AETHERIUM_KF_THUNDER_WALL" );
 #precache( "string", "ZM_AETHERIUM_KF_TURNED" );
+#precache( "string", "ZM_AETHERIUM_KF_ZOMBIE_DOG" );
 
 #namespace zm_aetherium_hud;
 
