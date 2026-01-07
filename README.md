@@ -4,6 +4,10 @@
 
 ---
 
+[How To Add Perks](https://github.com/Owen-C137/Atherium-Hud-Bo7-Remake-/wiki/How-To-Add-Perks)
+[How To Add Weapons](https://github.com/Owen-C137/Atherium-Hud-Bo7-Remake-/wiki/How-To-Add-Weapons)
+[How To Add Powerups](https://github.com/Owen-C137/Atherium-Hud-Bo7-Remake-/wiki/How-To-Add-New-Powerups)
+
 ## Note:
 
 This HUD is not fully finished there are still some features that need to be added and bugs to be fixed, 
