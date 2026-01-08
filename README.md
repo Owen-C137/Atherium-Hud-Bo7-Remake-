@@ -21,16 +21,16 @@ this is a beta/test version to find issues before releasing publicly.
 ## Preview
 
 Main HUD:
-![Main HUD](https://ibb.co/wbdGRD0)
+![Main HUD](https://i.ibb.co/ps1VxC0/Hud.png)
 
 ScoreBoard:
-![ScoreBoard](https://ibb.co/BHb0YmjY)
+![ScoreBoard](https://i.ibb.co/LDmVsM6s/Scoreboard.png)
 
 Pause Menu:
-![Pause Menu](https://ibb.co/TqDTYNCQ)
+![Pause Menu](https://i.ibb.co/gFb7mcn0/Pase-Menu.png)
 
 Options Menu:
-![Options Menu](https://ibb.co/1YFY1rG7)
+![Options Menu](https://i.ibb.co/RGRGf3TY/Options-Menu.png)
 
 ---
 
