@@ -132,17 +132,6 @@ image,i_mtl_sat_ui_icon_zm_support_cymball_monkey_empty
 image,i_mtl_hud_octobomb
 image,i_mtl_hud_octobomb_empty
 
-//Perk icons
-image,bl3_deadshot
-image,bl3_jug
-image,bl3_3guns
-image,bl3_qr
-image,bl3_speed_cola
-image,bl3_marathon
-image,bl3_doubletap
-image,bl3_widows
-image,bl3_electriccherry
-
 // Perk Notification Images
 image,i_mtl_image_3a5dcba7b0d44850
 image,i_mtl_image_4b19966fe6b8a3f4
