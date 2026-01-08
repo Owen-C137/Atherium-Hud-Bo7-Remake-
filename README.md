@@ -18,6 +18,22 @@ this is a beta/test version to find issues before releasing publicly.
 
 ---
 
+## Preview
+
+Main HUD:
+![Description](https://demonscriptz.live/preview/184/content)
+
+ScoreBoard:
+![Description](https://demonscriptz.live/preview/185/content)
+
+Pause Menu:
+![Description](https://demonscriptz.live/preview/186/content)
+
+Options Menu:
+![Description](https://demonscriptz.live/preview/183/content)
+
+---
+
 ## Installation
 
 ### Step 1: Install Assets
