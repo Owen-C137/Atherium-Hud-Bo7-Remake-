@@ -18,6 +18,11 @@ this is a beta/test version to find issues before releasing publicly.
 
 ---
 
+## Support
+If you need help with installation or have any questions, feel free to join my Discord server for support:
+- [Discord Invite Link](https://discord.gg/9aYFZ6Fq7W)
+---
+
 ## Preview
 
 Main HUD:
