@@ -10,6 +10,7 @@
 3. [How To Add Powerups](https://github.com/Owen-C137/Aetherium-Hud-Bo7-Remake-/wiki/How-To-Add-New-Powerups)
 4. [How To Change Player Icons](https://github.com/Owen-C137/Atherium-Hud-Bo7-Remake-/wiki/How-To-Change-Player-Portrait)
 5. [How To Change AAT Icons](https://github.com/Owen-C137/Atherium-Hud-Bo7-Remake-/wiki/How-To-Change-AAT-Icons)
+6. [How To Change Promt Text](https://github.com/Owen-C137/Aetherium-Hud-Bo7-Remake-/wiki/Changing-Promt-Text)
 
 ## Note:
 
