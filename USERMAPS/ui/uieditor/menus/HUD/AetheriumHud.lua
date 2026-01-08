@@ -33,7 +33,6 @@ require("ui.uieditor.widgets.HUD.ZM_TimeBar.ZM_BeastmodeTimeBarWidget")
 require("ui.uieditor.widgets.ZMInventory.RocketShieldBluePrint.RocketShieldBlueprintWidget")
 require( "ui.uieditor.widgets.Chat.inGame.IngameChatClientContainer" )
 require( "ui.uieditor.widgets.BubbleGumBuffs.BubbleGumPackInGame" )
-
 -- Call Common Zombie HUD functions (loads notification systems)
 CoD.Zombie.CommonHudRequire()
 

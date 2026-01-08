@@ -178,10 +178,29 @@ DataSources.AetheriumStartMenuButtons = ListHelper_SetupDataSource("AetheriumSta
 
 	table.insert(buttons, {
 		models = {
-			displayText = "Leave Game / Quit Game",
+			displayText = "Leave Game",
 			action = function(self, element, controller, actionParam, menu)
-				-- TODO: Implement quit game
-				GoBack(menu, controller)
+				-- Close all menus first
+				menu:processEvent({
+					name = "close_all_ingame_menus",
+					controller = controller
+				})
+				
+				-- Send menu response for proper cleanup
+				Engine.SendMenuResponse(controller, "popup_leavegame", "endround")
+				
+				-- Check if solo or multiplayer
+				local playerCount = Engine.GetPlayerCount()
+				
+				if playerCount and playerCount <= 1 then
+					-- Solo: End the game (disconnect)
+					Engine.SetDvar("cl_paused", 0)
+					Engine.Exec(controller, "disconnect")
+				else
+					-- Multiplayer: Just leave the game
+					Engine.SetDvar("cl_paused", 0)
+					Engine.Exec(controller, "disconnect")
+				end
 			end
 		}
 	})

@@ -16,6 +16,7 @@ rawfile,ui/uieditor/widgets/HUD/ZM_CursorHint/Prompts/PromptPAP.lua
 rawfile,ui/uieditor/widgets/HUD/ZM_CursorHint/Prompts/PromptMysteryBox.lua
 rawfile,ui/uieditor/widgets/HUD/ZM_CursorHint/Prompts/PromptWallBuy.lua
 rawfile,ui/uieditor/widgets/HUD/ZM_CursorHint/Prompts/PromptBBG.lua
+rawfile,ui/uieditor/widgets/HUD/ZM_CursorHint/Prompts/PromptDoors.lua
 
 // AETHERIUM WIDGETS
 rawfile,ui/uieditor/widgets/HUD/AetheriumWidgets/AetheriumLoadout.lua
@@ -96,6 +97,7 @@ image,i_mtl_ximage_e0683b14f47e4fc
 image,i_vfx_dist_blast_wave_loop_1_c
 image,i_mtl_image_4b496d8bd0369913
 image,riotshield_zm_icon
+image,i_mtl_ui_icon_zm_ping_door_buy
 
 image,i_mtl_hud_reticle_06_h
 

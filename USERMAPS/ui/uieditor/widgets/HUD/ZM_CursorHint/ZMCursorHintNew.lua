@@ -7,6 +7,7 @@ require( "ui.uieditor.widgets.HUD.ZM_CursorHint.Prompts.PromptPAP" )
 require( "ui.uieditor.widgets.HUD.ZM_CursorHint.Prompts.PromptMysteryBox" )
 require( "ui.uieditor.widgets.HUD.ZM_CursorHint.Prompts.PromptBBG" )
 require( "ui.uieditor.widgets.HUD.ZM_CursorHint.Prompts.PromptWallBuy" )
+require( "ui.uieditor.widgets.HUD.ZM_CursorHint.Prompts.PromptDoors" )
 require( "ui.uieditor.widgets.HUD.Mappings.AtheriumPerks" )  -- For CoD.AetheriumPerks table
 require( "ui.uieditor.widgets.HUD.Mappings.AetheriumBBG" )  -- For CoD.AetheriumBBGData and helpers
 require( "ui.uieditor.widgets.HUD.Mappings.AetheriumWeapons" )  -- For CoD.AetheriumWeaponData table
@@ -76,6 +77,12 @@ CoD.ZMCursorHintNew.new = function ( menu, controller )
 	self.promptWallBuy:setTopBottom( true, false, 0, 720 )
 	self:addElement( self.promptWallBuy )
 	
+	-- Create Doors Prompt (doors and debris)
+	self.promptDoors = CoD.PromptDoors.new( menu, controller )
+	self.promptDoors:setLeftRight( true, false, 0, 1280 )
+	self.promptDoors:setTopBottom( true, false, 0, 720 )
+	self:addElement( self.promptDoors )
+	
 	-- Helper function to check if cursor hint should be shown (official pattern)
 	local function IsCursorHintActive()
 		local showModel = Engine.GetModel( Engine.GetModelForController( controller ), "hudItems.showCursorHint" )
@@ -120,7 +127,11 @@ CoD.ZMCursorHintNew.new = function ( menu, controller )
 		-- Exclude mystery box (cost 950)
 		local isMysteryBox = string.find(lowerHint, "950") or string.find(lowerHint, "mystery")
 		
-		local result = hasCostBracket and not isMysteryBox
+		-- Exclude doors and debris (CRITICAL FIX)
+		local isDoor = string.find(lowerHint, "door") or string.find(lowerHint, "open")
+		local isDebris = string.find(lowerHint, "debris") or string.find(lowerHint, "clear") or string.find(lowerHint, "remove")
+		
+		local result = hasCostBracket and not isMysteryBox and not isDoor and not isDebris
 		
 		-- FIXED: Don't check iconRatio > 0, just check if image exists
 		return hasImage and result
@@ -267,6 +278,37 @@ CoD.ZMCursorHintNew.new = function ( menu, controller )
 	-- Uses CoD.IsGobbleGumHint from AetheriumBBG mapping
 	local function isGobbleGumHint(hintText)
 		return CoD.IsGobbleGumHint(hintText)
+	end
+	
+	-- Helper function to detect Door/Debris hints
+	local function isDoorDebrisHint(hintText)
+		if not hintText or hintText == "" then
+			return false
+		end
+		
+		local lowerHint = string.lower(hintText)
+		
+		-- Check for door keywords
+		local hasDoor = string.find(lowerHint, "door") ~= nil
+		local hasOpen = string.find(lowerHint, "open") ~= nil
+		
+		-- Check for debris keywords
+		local hasDebris = string.find(lowerHint, "debris") ~= nil
+		local hasClear = string.find(lowerHint, "clear") ~= nil
+		local hasRemove = string.find(lowerHint, "remove") ~= nil
+		
+		-- Door: "door" OR "open" (but not wall buy)
+		-- Debris: "debris" OR ("clear"/"remove")
+		if hasDoor or hasDebris then
+			return true
+		end
+		
+		-- Also check for "open" or "clear" with cost (buyable doors/debris)
+		if (hasOpen or hasClear or hasRemove) and string.find(lowerHint, "cost") then
+			return true
+		end
+		
+		return false
 	end
 	
 	-- Helper function to detect Mystery Box weapon pickup hints
@@ -462,6 +504,22 @@ CoD.ZMCursorHintNew.new = function ( menu, controller )
 			end
 		},
 		{
+			stateName = "Doors",
+			condition = function ( menu, element, event )
+				if not IsCursorHintActive() then
+					return false
+				end
+				
+				local cursorHintTextModel = Engine.GetModel( Engine.GetModelForController( controller ), "hudItems.cursorHintText" )
+				if cursorHintTextModel then
+					local cursorHintText = Engine.GetModelValue( cursorHintTextModel )
+					return isDoorDebrisHint(cursorHintText)
+				end
+				
+				return false
+			end
+		},
+		{
 			stateName = "PowerRequired",
 			condition = function ( menu, element, event )
 				if not IsCursorHintActive() then
@@ -486,7 +544,7 @@ CoD.ZMCursorHintNew.new = function ( menu, controller )
 				local cursorHintTextModel = Engine.GetModel( Engine.GetModelForController( controller ), "hudItems.cursorHintText" )
 				if cursorHintTextModel then
 					local cursorHintText = Engine.GetModelValue( cursorHintTextModel )
-				-- Has a hint but not power switch, power required, perks, PAP, gobblegum, mystery box, or wall buy
+				-- Has a hint but not power switch, power required, perks, PAP, gobblegum, mystery box, wall buy, or doors
 				if cursorHintText and cursorHintText ~= "" then
 					return not isPowerSwitchHint(cursorHintText) and 
 					       not isPowerRequiredHint(cursorHintText) and 
@@ -495,7 +553,8 @@ CoD.ZMCursorHintNew.new = function ( menu, controller )
 				       not isGobbleGumHint(cursorHintText) and
 			       not isMysteryBoxHint(cursorHintText) and
 			       not isMysteryBoxWeapon(cursorHintText) and
-			       not isWallBuyHint(cursorHintText)
+			       not isWallBuyHint(cursorHintText) and
+			       not isDoorDebrisHint(cursorHintText)
 					end
 				end
 				return false
@@ -577,6 +636,7 @@ CoD.ZMCursorHintNew.new = function ( menu, controller )
 				self.promptBBG:setAlpha( 0 )
 				self.promptMysteryBox:setAlpha( 0 )
 				self.promptWallBuy:setAlpha( 0 )
+				self.promptDoors:setAlpha( 0 )
 			end
 		},
 		PowerSwitch = {
@@ -589,6 +649,7 @@ CoD.ZMCursorHintNew.new = function ( menu, controller )
 				self.promptBBG:setAlpha( 0 )
 				self.promptMysteryBox:setAlpha( 0 )
 				self.promptWallBuy:setAlpha( 0 )
+				self.promptDoors:setAlpha( 0 )
 			end
 		},
 		Perks = {
@@ -601,6 +662,20 @@ CoD.ZMCursorHintNew.new = function ( menu, controller )
 				self.promptBBG:setAlpha( 0 )
 				self.promptMysteryBox:setAlpha( 0 )
 				self.promptWallBuy:setAlpha( 0 )
+				self.promptDoors:setAlpha( 0 )
+			end
+		},
+		Doors = {
+			DefaultClip = function ()
+				self.PromptPowerSwitch:setAlpha( 0 )
+				self.promptDefault:setAlpha( 0 )
+				self.PromptPowerRequired:setAlpha( 0 )
+				self.promptPerks:setAlpha( 0 )
+				self.promptPAP:setAlpha( 0 )
+				self.promptBBG:setAlpha( 0 )
+				self.promptMysteryBox:setAlpha( 0 )
+				self.promptWallBuy:setAlpha( 0 )
+				self.promptDoors:setAlpha( 1 )
 			end
 		},
 		PAP = {
@@ -613,6 +688,7 @@ CoD.ZMCursorHintNew.new = function ( menu, controller )
 				self.promptBBG:setAlpha( 0 )
 				self.promptMysteryBox:setAlpha( 0 )
 				self.promptWallBuy:setAlpha( 0 )
+				self.promptDoors:setAlpha( 0 )
 			end
 		},
 		GobbleGum = {
@@ -625,6 +701,7 @@ CoD.ZMCursorHintNew.new = function ( menu, controller )
 				self.promptBBG:setAlpha( 1 )
 				self.promptMysteryBox:setAlpha( 0 )
 				self.promptWallBuy:setAlpha( 0 )
+				self.promptDoors:setAlpha( 0 )
 			end
 		},
 		MysteryBox = {
@@ -637,6 +714,7 @@ CoD.ZMCursorHintNew.new = function ( menu, controller )
 				self.promptBBG:setAlpha( 0 )
 				self.promptMysteryBox:setAlpha( 1 )
 				self.promptWallBuy:setAlpha( 0 )
+				self.promptDoors:setAlpha( 0 )
 			end
 		},
 		PowerRequired = {
@@ -649,6 +727,7 @@ CoD.ZMCursorHintNew.new = function ( menu, controller )
 				self.promptBBG:setAlpha( 0 )
 				self.promptMysteryBox:setAlpha( 0 )
 				self.promptWallBuy:setAlpha( 0 )
+				self.promptDoors:setAlpha( 0 )
 			end
 		},
 		WallBuy = {
@@ -661,6 +740,7 @@ CoD.ZMCursorHintNew.new = function ( menu, controller )
 				self.promptBBG:setAlpha( 0 )
 				self.promptMysteryBox:setAlpha( 0 )
 				self.promptWallBuy:setAlpha( 1 )
+				self.promptDoors:setAlpha( 0 )
 			end
 		},
 		DefaultHint = {
@@ -673,6 +753,7 @@ CoD.ZMCursorHintNew.new = function ( menu, controller )
 				self.promptBBG:setAlpha( 0 )
 				self.promptMysteryBox:setAlpha( 0 )
 				self.promptWallBuy:setAlpha( 0 )
+				self.promptDoors:setAlpha( 0 )
 			end
 		}
 	}
@@ -686,6 +767,7 @@ CoD.ZMCursorHintNew.new = function ( menu, controller )
 		element.promptBBG:close()
 		element.promptMysteryBox:close()
 		element.promptWallBuy:close()
+		element.promptDoors:close()
 	end )
 	
 	-- Subscribe to cursorHintImage for dynamic updates (wall buy detection)
