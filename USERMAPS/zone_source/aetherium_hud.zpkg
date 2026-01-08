@@ -17,10 +17,6 @@ rawfile,ui/uieditor/widgets/HUD/ZM_CursorHint/Prompts/PromptMysteryBox.lua
 rawfile,ui/uieditor/widgets/HUD/ZM_CursorHint/Prompts/PromptWallBuy.lua
 rawfile,ui/uieditor/widgets/HUD/ZM_CursorHint/Prompts/PromptBBG.lua
 
-// T7OVERCHARGED FILES
-rawfile,ui/util/T7Overcharged.lua
-rawfile,ui/util/T7OverchargedUtil.lua
-
 // AETHERIUM WIDGETS
 rawfile,ui/uieditor/widgets/HUD/AetheriumWidgets/AetheriumLoadout.lua
 rawfile,ui/uieditor/widgets/HUD/AetheriumWidgets/AetheriumPlayerInfo.lua

@@ -32,15 +32,7 @@ require("ui.uieditor.widgets.HUD.ZM_TimeBar.ZM_BeastmodeTimeBarWidget")
 require("ui.uieditor.widgets.ZMInventory.RocketShieldBluePrint.RocketShieldBlueprintWidget")
 require( "ui.uieditor.widgets.Chat.inGame.IngameChatClientContainer" )
 require( "ui.uieditor.widgets.BubbleGumBuffs.BubbleGumPackInGame" )
-require( "ui.util.T7Overcharged" )
--- T7Overcharged initialization
-InitializeT7Overcharged({
-	mapname = "zm_weapon_ports",
-	filespath = [[.\usermaps\zm_weapon_ports\]],
-	workshopid = nil,
-	discordAppId = nil,
-	showExternalConsole = true
-})
+
 -- Call Common Zombie HUD functions (loads notification systems)
 CoD.Zombie.CommonHudRequire()
 
