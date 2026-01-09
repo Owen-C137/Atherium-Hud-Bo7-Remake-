@@ -11,7 +11,8 @@
 4. [How To Change Player Icons](https://github.com/Owen-C137/Atherium-Hud-Bo7-Remake-/wiki/How-To-Change-Player-Portrait)
 5. [How To Change AAT Icons](https://github.com/Owen-C137/Atherium-Hud-Bo7-Remake-/wiki/How-To-Change-AAT-Icons)
 6. [How To Change Promt Text](https://github.com/Owen-C137/Aetherium-Hud-Bo7-Remake-/wiki/Changing-Promt-Text)
-
+7. [How To Change Main Hud Colors](https://github.com/Owen-C137/Aetherium-Hud-Bo7-Remake-/wiki/How-To-Change-Main-Hud-Colors)
+---
 ## Note:
 
 This HUD is not fully finished there are still some features that need to be added and bugs to be fixed, 
