@@ -8,7 +8,7 @@ require( "ui.uieditor.widgets.HUD.ZM_CursorHint.Prompts.PromptMysteryBox" )
 require( "ui.uieditor.widgets.HUD.ZM_CursorHint.Prompts.PromptBBG" )
 require( "ui.uieditor.widgets.HUD.ZM_CursorHint.Prompts.PromptWallBuy" )
 require( "ui.uieditor.widgets.HUD.ZM_CursorHint.Prompts.PromptDoors" )
-require( "ui.uieditor.widgets.HUD.Mappings.AtheriumPerks" )  -- For CoD.AetheriumPerks table
+require( "ui.uieditor.widgets.HUD.Mappings.AetheriumPerks" )  -- For CoD.AetheriumPerks table
 require( "ui.uieditor.widgets.HUD.Mappings.AetheriumBBG" )  -- For CoD.AetheriumBBGData and helpers
 require( "ui.uieditor.widgets.HUD.Mappings.AetheriumWeapons" )  -- For CoD.AetheriumWeaponData table
 

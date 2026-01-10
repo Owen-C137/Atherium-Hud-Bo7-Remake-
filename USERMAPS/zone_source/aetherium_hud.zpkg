@@ -44,7 +44,7 @@ rawfile,ui/uieditor/widgets/HUD/Mappings/AetheriumBBG.lua
 rawfile,ui/uieditor/widgets/HUD/Mappings/AetheriumWeapons.lua
 rawfile,ui/uieditor/widgets/HUD/Mappings/AetheriumCharacters.lua
 rawfile,ui/uieditor/widgets/HUD/Mappings/AetheriumAAT.lua
-rawfile,ui/uieditor/widgets/HUD/Mappings/AtheriumPerks.lua
+rawfile,ui/uieditor/widgets/HUD/Mappings/AetheriumPerks.lua
 
 scriptparsetree,scripts/zm/_zm_aetherium_hud.gsc
 scriptparsetree,scripts/zm/_zm_aetherium_hud.csc

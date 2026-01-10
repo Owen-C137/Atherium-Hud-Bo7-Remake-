@@ -1,7 +1,7 @@
 -- Aetherium Perks Container Widget
 -- Dynamically displays perks as player acquires them
 
-require( "ui.uieditor.widgets.HUD.Mappings.AtheriumPerks" )  -- For CoD.AetheriumPerks table
+require( "ui.uieditor.widgets.HUD.Mappings.AetheriumPerks" )  -- For CoD.AetheriumPerks table
 require( "ui.uieditor.widgets.HUD.AetheriumWidgets.AetheriumPerkItem" )
 
 -- Get perk index in the list
