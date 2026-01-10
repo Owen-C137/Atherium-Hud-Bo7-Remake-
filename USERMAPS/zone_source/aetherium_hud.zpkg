@@ -96,7 +96,6 @@ image,i_mtl_ximage_89bc9beef04fb63
 image,i_mtl_ximage_c800fc9cce96f23
 image,i_mtl_ximage_e0683b14f47e4fc
 image,i_vfx_dist_blast_wave_loop_1_c
-image,i_mtl_image_4b496d8bd0369913
 image,riotshield_zm_icon
 image,i_mtl_ui_icon_zm_ping_door_buy
 
@@ -127,9 +126,6 @@ image,i_mtl_ui_icon_operators_nikolai
 image,i_mtl_ui_icon_operators_takeo
 
 //Weapon Images
-image,i_mtl_sat_icon_weapon_sat_ar_hawk_ao
-image,i_mtl_sat_icon_weapon_sat_ar_condor_ao
-image,i_mtl_sat_icon_weapon_sat_ar_macaw_ao
 image,i_mtl_sat_ui_icon_lethal_grenade_frag
 image,i_mtl_sat_ui_icon_zm_support_cymball_monkey
 image,i_mtl_sat_ui_icon_lethal_grenade_frag_empty
