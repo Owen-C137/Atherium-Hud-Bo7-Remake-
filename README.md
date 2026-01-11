@@ -15,8 +15,6 @@
 ---
 ## Note:
 
-This HUD is not fully finished there are still some features that need to be added and bugs to be fixed, 
-this is a beta/test version to find issues before releasing publicly.
 
 ---
 
